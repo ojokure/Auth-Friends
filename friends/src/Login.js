@@ -1,30 +1,27 @@
 import React, { useState } from "react";
+import axiosWithAuth from "./axioswithAuth";
 
 export default function Login(props) {
+  const credentials = {
+    name: "",
+    age: "",
+    email: ""
+  };
 
-    const initialLoginState = {
-        name: "",
-        age: "",
-        email: ""
-      };
-    
-      const [state, setState] = useState(initialLoginState);
+  const [state, setState] = useState(credentials);
 
-      
-      const handleChange = e => {
-        setState({...state, [e.target.name]: e.target.value });
-      };
-    
-      const handleSubmit = e => {
-        e.preventDefault();
-        const post = {
-          name: state.name,
-          age: state.age,
-          email: state.email
-        };
+  const handleChange = e => {
+    setState({ ...state, [e.target.name]: e.target.value });
+  };
 
-
-      };
+  const handleSubmit = e => {
+    e.preventDefault();
+    const postCredential = {
+      name: state.name,
+      age: state.age,
+      email: state.email
+    };
+  };
   return (
     <div>
       <div className="App">
