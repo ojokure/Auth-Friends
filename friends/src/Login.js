@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import axiosWithAuth from "./axioswithAuth";
+import axios from 'axios'
+
 
 export default function Login(props) {
   const credentials = {
@@ -15,19 +17,19 @@ export default function Login(props) {
 
   const handleSubmit = e => {
     e.preventDefault();
-    const postCredential = {
-      username: state.name,
+    const postCredentials = {
+      username: state.username,
       password: state.password
     };
-
     axiosWithAuth()
-      .post("/login", postCredential)
-      .then(res => {
-        console.log(res);
-        //   localStorage.setItem('token', res.data.token)
+      .post('/login', postCredentials)
+      .then(res => {console.log(res.data)
+          localStorage.setItem('token', res.data.payload)
       })
-      .catch();
+    
   };
+
+  
   return (
     <div>
       <div className="App">
