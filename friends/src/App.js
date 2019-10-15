@@ -3,21 +3,24 @@ import { Route, NavLink, withRouter, Redirect } from "react-router-dom";
 import "./App.css";
 import Login from "./Login";
 import Friends from "./Friends";
+import AddFriend from "./Addfriend";
 import PrivateRoute from "./PrivateRoute";
 
 function App() {
-
   const onLogOut = () => {
-    localStorage.removeItem('token');
-
-  }
+    localStorage.removeItem("token");
+  };
   return (
     <div className="App">
       <nav>
         <span>
-        <NavLink exact to="/" > Log In </NavLink>
-        <NavLink exact to="/friends" > My Friends List </NavLink>
-
+          <NavLink exact to="/">
+            Log In
+          </NavLink>
+          <NavLink exact to="/friends">
+            {" "}
+            My Friends List{" "}
+          </NavLink>
         </span>
         <button onClick={onLogOut}> Log Out </button>
       </nav>
