@@ -3,9 +3,8 @@ import axiosWithAuth from "./axioswithAuth";
 
 export default function Login(props) {
   const credentials = {
-    name: "",
-    age: "",
-    email: ""
+    username: "",
+    password: ""
   };
 
   const [state, setState] = useState(credentials);
@@ -17,10 +16,17 @@ export default function Login(props) {
   const handleSubmit = e => {
     e.preventDefault();
     const postCredential = {
-      name: state.name,
-      age: state.age,
-      email: state.email
+      username: state.name,
+      password: state.password
     };
+
+    axiosWithAuth()
+      .post("/login", postCredential)
+      .then(res => {
+        console.log(res);
+        //   localStorage.setItem('token', res.data.token)
+      })
+      .catch();
   };
   return (
     <div>
@@ -28,37 +34,27 @@ export default function Login(props) {
         <h1> Please Sign In </h1>
         <form onSubmit={handleSubmit}>
           <div>
-            <label>Name </label>
+            <label>Username </label>
             <br />
             <input
               type="text"
-              name="name"
+              name="username"
               onChange={handleChange}
-              value={state.name}
+              value={state.username}
             />
           </div>
           <br />
           <div>
-            <label>Age </label>
+            <label>Password </label>
             <br />
             <input
               type="text"
-              name="age"
+              name="password"
               onChange={handleChange}
-              value={state.age}
+              value={state.password}
             />
           </div>
-          <br />
-          <div>
-            <label>Email </label>
-            <br />
-            <input
-              type="text"
-              name="height"
-              onChange={handleChange}
-              value={state.height}
-            />
-          </div>
+
           <br />
           <button type="submit">Submit</button>
         </form>
