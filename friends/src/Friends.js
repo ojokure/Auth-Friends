@@ -1,13 +1,26 @@
 import React, { useState, useEffect } from "react";
+import axiosWithAuth from "./axioswithAuth";
 
 export default function Friends(props) {
+  const [friends, setFriends] = useState([]);
 
-    const [friends, setFriends] = useState([])
+  useEffect(() => {
+    axiosWithAuth()
+      .get("/friends")
+      .then(res => {
+        setFriends(res.data);
+      });
+  }, []);
 
-    useEffect(() => {
-
-    }, [])
-
-
-  return (<div></div>);
+  return (
+    <div>
+      {friends.map(el => (
+        <div>
+          <p>{el.name}</p>
+          <p>{el.age}</p>
+          <p>{el.email}</p>
+        </div>
+      ))}
+    </div>
+  );
 }
