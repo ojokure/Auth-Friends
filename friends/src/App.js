@@ -12,20 +12,31 @@ function App() {
   };
   return (
     <div className="App">
-      {/* <nav> */}
-        <div style={{ display: "flex", justifyContent: "spaceBetween", backgroundColor:'red' }}>
+      <nav>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "spaceBetween",
+        }}
+      >
+        <div>
           <NavLink exact to="/">
             Log In
           </NavLink>
+        </div>
+        <div>
           <NavLink exact to="/friends">
             My Friends List
           </NavLink>
+        </div>
+        <div>
           <NavLink exact to="/addFriend">
             Add a friend
           </NavLink>
-          <button onClick={onLogOut}> Log Out </button>
         </div>
-      {/* </nav> */}
+        <button onClick={onLogOut}> Log Out </button>
+      </div>
+      </nav>
       <main>
         <Route exact path="/" component={Login} />
         <PrivateRoute path="/friends" component={Friends} />

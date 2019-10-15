@@ -11,6 +11,7 @@ export default function AddFriend(props) {
   };
 
   const [addForm, setAddForm] = useState(initialAddForm);
+  const [friends, setFriends] = useState([]);
 
   const handleChange = e => {
     setAddForm({ ...addForm, [e.target.name]: e.target.value });
@@ -20,12 +21,15 @@ export default function AddFriend(props) {
     e.preventDefault();
     const postForm = {
       name: addForm.name,
-      password: addForm.password,
+      age: addForm.age,
       email: addForm.email
     };
     axiosWithAuth()
-      .post("/login", postForm)
-      .then(res => { console.log(res)
+      .post("/friends", postForm)
+      .then(res => {
+        setFriends([...friends, friends.concat(res.data)]);
+        alert('Yayy! you new friend has been added')
+        setAddForm(initialAddForm)
       })
       .catch(error => {
         console.log(error);
