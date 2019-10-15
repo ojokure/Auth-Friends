@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axiosWithAuth from "./axioswithAuth";
 
+
 export default function Friends(props) {
   const [friends, setFriends] = useState([]);
 
@@ -15,7 +16,7 @@ export default function Friends(props) {
   return (
     <div>
       {friends.map(el => (
-        <div>
+        <div key={el.id}>
           <p>{el.name}</p>
           <p>{el.age}</p>
           <p>{el.email}</p>

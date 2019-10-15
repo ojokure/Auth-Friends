@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import axiosWithAuth from "./axioswithAuth";
-import axios from 'axios'
-
+import Loader from "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import axios from "axios";
 
 export default function Login(props) {
   const credentials = {
     username: "",
-    password: ""
+    password: "",
+    isLoading: true
   };
 
   const [state, setState] = useState(credentials);
@@ -21,15 +22,18 @@ export default function Login(props) {
       username: state.username,
       password: state.password
     };
+    setState({ ...state, isLoading: true });
     axiosWithAuth()
-      .post('/login', postCredentials)
-      .then(res => {console.log(res.data)
-          localStorage.setItem('token', res.data.payload)
+      .post("/login", postCredentials)
+      .then(res => {
+        localStorage.setItem("token", res.data.payload);
+        props.history.push('/friends');
+
       })
-    
+      .catch(error => { console.log(error)
+      })
   };
 
-  
   return (
     <div>
       <div className="App">

@@ -5,6 +5,11 @@ import Login from "./Login";
 import Friends from "./Friends";
 
 function App() {
+
+  const onLogOut = () => {
+    localStorage.removeItem('token');
+
+  }
   return (
     <div className="App">
       <nav>
@@ -13,7 +18,7 @@ function App() {
         <NavLink exact to="/friends" > My Friends List </NavLink>
 
         </span>
-        <button> Log Out </button>
+        <button onClick={onLogOut}> Log Out </button>
       </nav>
       <main>
         <Route exact path="/" component={Login} />
