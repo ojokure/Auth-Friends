@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axiosWithAuth from "./axioswithAuth";
 
-
 export default function Friends(props) {
   const [friends, setFriends] = useState([]);
 
@@ -25,3 +24,5 @@ export default function Friends(props) {
     </div>
   );
 }
+
+
